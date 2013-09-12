@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+mkdir run 2> /dev/null || true
+
+echo $$ > ./run/bossrun.pid
+exec bossrun -c config/bossrun.yaml \
+    -Dpythonpath=$(python2.7 -c "import sys; print(':'.join(sys.path))")

@@ -1,0 +1,28 @@
+_vars:
+- &zgwport 8000
+- &basedir ./run/norm
+- &zgwsock  # for unit tests
+- &redisconf redis
+- &basehost ftest.insollo
+- &staticurl http://t.ftest.insollo:8000
+
+_pythonenv: &pythonenv
+  PYTHONPATH: deps/ardj:$pythonpath
+  LANG: en_US.UTF-8
+  PYTHONIOENCODING: utf-8
+
+bossrun:
+  failfast: yes
+
+Processes:
+
+  ices-rock:
+    environ: *pythonenv
+    executable-path: /usr/bin/ices
+    umask: 002
+    arguments:
+    - ices-rock
+    - -c
+    - ./config/ices.conf
+    - -v
+    - 7
